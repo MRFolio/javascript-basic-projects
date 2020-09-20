@@ -25,7 +25,7 @@ function submitResult(e) {
     : userInputResults();
 
   function noInputResult() {
-    result.innerHTML = `<p class"result">${text[random]}</p>`;
+    result.innerHTML = `<p class ="result">${text[random]}</p>`;
   }
 
   function userInputResults() {
