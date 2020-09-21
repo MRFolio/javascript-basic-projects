@@ -58,11 +58,7 @@ function displayAlert(text, action) {
 //clear items
 function clearItems() {
   const items = document.querySelectorAll(".grocery-item");
-  if (items.length > 0) {
-    items.forEach((item) => {
-      list.removeChild(item);
-    });
-  }
+  items.length > 0 ? items.forEach((item) => list.removeChild(item)) : false;
   container.classList.remove("show-container");
   displayAlert("empty list", "danger");
   localStorage.removeItem("list");
@@ -74,9 +70,9 @@ function deleteItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
   const id = element.dataset.id;
   list.removeChild(element);
-  if (list.children.length === 0) {
-    container.classList.remove("show-container");
-  }
+  list.children.length === 0
+    ? container.classList.remove("show-container")
+    : false;
   displayAlert("item removed", "danger");
   setBackToDefault();
   //remove from local Storage
@@ -86,8 +82,7 @@ function deleteItem(e) {
 function editItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
   // set edit item
-  const editElement = e.currentTarget.parentElement.previousElementSibling;
-  console.log(editElement);
+  editElement = e.currentTarget.parentElement.previousElementSibling;
   // set form value
   grocery.value = editElement.innerHTML;
   editFlag = true;
@@ -148,12 +143,10 @@ localStorage.removeItem("orange"); */
 
 function setUpItems() {
   let items = getLocalStorage();
-  if (items.length > 0) {
-    items.forEach((item) => {
-      createListItem(item.id, item.value);
-    });
-    container.classList.add("show-container");
-  }
+  items.length > 0
+    ? items.forEach((item) => createListItem(item.id, item.value))
+    : false;
+  container.classList.add("show-container");
 }
 
 function createListItem(id, value) {
