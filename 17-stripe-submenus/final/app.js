@@ -1,19 +1,19 @@
-import sublinks from './data.js';
+import sublinks from "./data.js";
 
-const toggleBtn = document.querySelector('.toggle-btn');
-const closeBtn = document.querySelector('.close-btn');
-const sidebarWrapper = document.querySelector('.sidebar-wrapper');
-const sidebar = document.querySelector('.sidebar-links');
-const linkBtns = [...document.querySelectorAll('.link-btn')];
-const submenu = document.querySelector('.submenu');
-const hero = document.querySelector('.hero');
-const nav = document.querySelector('.nav');
+const toggleBtn = document.querySelector(".toggle-btn");
+const closeBtn = document.querySelector(".close-btn");
+const sidebarWrapper = document.querySelector(".sidebar-wrapper");
+const sidebar = document.querySelector(".sidebar-links");
+const linkBtns = [...document.querySelectorAll(".link-btn")];
+const submenu = document.querySelector(".submenu");
+const hero = document.querySelector(".hero");
+const nav = document.querySelector(".nav");
 // hide/show sideabar
-toggleBtn.addEventListener('click', () => {
-  sidebarWrapper.classList.add('show');
+toggleBtn.addEventListener("click", () => {
+  sidebarWrapper.classList.add("show");
 });
-closeBtn.addEventListener('click', () => {
-  sidebarWrapper.classList.remove('show');
+closeBtn.addEventListener("click", () => {
+  sidebarWrapper.classList.remove("show");
 });
 
 // set sidebar
@@ -27,14 +27,14 @@ ${links
   .map((link) => {
     return `<a href="${link.url}"><i class="${link.icon}"></i>${link.label}</a>`;
   })
-  .join('')}
+  .join("")}
 </div>
 </article>`;
   })
-  .join('');
+  .join("");
 
 linkBtns.forEach((btn) => {
-  btn.addEventListener('mouseover', function (e) {
+  btn.addEventListener("mouseover", function (e) {
     const text = e.currentTarget.textContent;
     const tempBtn = e.currentTarget.getBoundingClientRect();
     const center = (tempBtn.left + tempBtn.right) / 2;
@@ -43,16 +43,16 @@ linkBtns.forEach((btn) => {
     const tempPage = sublinks.find((link) => link.page === text);
     if (tempPage) {
       const { page, links } = tempPage;
-      submenu.classList.add('show');
+      submenu.classList.add("show");
       submenu.style.left = `${center}px`;
       submenu.style.top = `${bottom}px`;
       // OPTIONAL
-      let columns = 'col-2';
+      let columns = "col-2";
       if (links.length === 3) {
-        columns = 'col-3';
+        columns = "col-3";
       }
       if (links.length > 3) {
-        columns = 'col-4';
+        columns = "col-4";
       }
       submenu.innerHTML = `
       <section> 
@@ -62,7 +62,7 @@ linkBtns.forEach((btn) => {
         .map((link) => {
           return `<a href="${link.url}"><i class="${link.icon}"></i>${link.label}</a>`;
         })
-        .join('')}
+        .join("")}
       </div>
       </section>
       `;
@@ -70,11 +70,11 @@ linkBtns.forEach((btn) => {
   });
 });
 
-hero.addEventListener('mouseover', function (e) {
-  submenu.classList.remove('show');
+hero.addEventListener("mouseover", function (e) {
+  submenu.classList.remove("show");
 });
-nav.addEventListener('mouseover', function (e) {
-  if (!e.target.classList.contains('link-btn')) {
-    submenu.classList.remove('show');
+nav.addEventListener("mouseover", function (e) {
+  if (!e.target.classList.contains("link-btn")) {
+    submenu.classList.remove("show");
   }
 });
