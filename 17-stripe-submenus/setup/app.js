@@ -10,12 +10,11 @@ const hero = document.querySelector(".hero");
 const nav = document.querySelector(".nav");
 
 // hide/show sidebar
-toggleBtn.addEventListener("click", () => {
-  sidebarWrapper.classList.add("show");
-});
-closeBtn.addEventListener("click", () => {
-  sidebarWrapper.classList.remove("show");
-});
+toggleBtn.addEventListener("click", () => sidebarWrapper.classList.add("show"));
+
+closeBtn.addEventListener("click", () =>
+  sidebarWrapper.classList.remove("show")
+);
 
 // set sidebar
 sidebar.innerHTML = sublinks
@@ -44,6 +43,7 @@ linkBtns.forEach((btn) => {
     const tempPage = sublinks.find(({ page }) => page === text);
     if (tempPage) {
       const { page, links } = tempPage;
+      console.log(links);
       submenu.classList.add("show");
       submenu.style.left = `${center}px`;
       submenu.style.top = `${bottom}px`;
@@ -60,7 +60,8 @@ linkBtns.forEach((btn) => {
       <div class="submenu-center ${columns}">
       ${links
         .map((link) => {
-          return `<a href ="${link.url}"><i class="${link.icon}"></i>${link.label}</a>`;
+          const { url, label, icon } = link;
+          return `<a href ="${url}"><i class="${icon}"></i>${label}</a>`;
         })
         .join("")}
       </div
@@ -69,11 +70,9 @@ linkBtns.forEach((btn) => {
   });
 });
 
-hero.addEventListener("mouseover", (e) => {
-  submenu.classList.remove("show");
-});
-nav.addEventListener("mouseover", (e) => {
-  if (!e.target.classList.contains("link-btn")) {
-    submenu.classList.remove("show");
-  }
-});
+hero.addEventListener("mouseover", (e) => submenu.classList.remove("show"));
+nav.addEventListener("mouseover", (e) =>
+  !e.target.classList.contains("link-btn")
+    ? submenu.classList.remove("show")
+    : false
+);
