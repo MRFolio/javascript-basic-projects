@@ -1,3 +1,3 @@
-## You can see all projects in action here
+## Basic/Fundamental JavaScript projects
 
-[Projects](https://www.vanillajavascriptprojects.com/)
+You can see all projects in action [here](https://www.vanillajavascriptprojects.com/).
